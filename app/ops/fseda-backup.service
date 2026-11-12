@@ -1,0 +1,15 @@
+[Unit]
+Description=fseda.online database backup
+
+[Service]
+Type=oneshot
+User=deploy
+Group=deploy
+WorkingDirectory=/var/www/fseda.online/app
+Environment=DATA_DIR=/var/www/fseda.online/data
+ExecStart=/usr/bin/node --disable-warning=ExperimentalWarning scripts/backup.js
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/www/fseda.online/data
